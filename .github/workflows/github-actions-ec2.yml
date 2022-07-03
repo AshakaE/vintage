@@ -25,4 +25,4 @@ jobs:
             git pull
             yarn
             yarn build
-            yarn run start:prod
+            pm2 update
