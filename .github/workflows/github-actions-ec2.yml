@@ -3,11 +3,14 @@ name: Push-to-EC2
 # Trigger deployment only on push to master branch
 on: 
   push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-
+  
   deploy-to-modern:
+    if: ${{ github.ref == 'refs/heads/main' }}
     name: deploy to modern
     runs-on: ubuntu-latest
     steps:
