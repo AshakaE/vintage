@@ -25,17 +25,22 @@ on:
 
 jobs:
 
-  log-the-inputs:
+  deploy-to-modern:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
-          ENVIRONMENT: ${{ inputs.environment }}
+      - name: Deploy to Server 2
+        uses: appleboy/ssh-action@master
+      - with: |
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          key: ${{ env.KEY }}
+          port: ${{ env.PORT }}
+          script: |
+            cd vintage
+            git pull
+            yarn
+            yarn build
+            pm2 update
   
   deploy:
 
