@@ -32,9 +32,10 @@ jobs:
       - name: Deploy to Server 2
         uses: appleboy/ssh-action@master
         with: 
-          host: ec2-3-89-232-35.compute-1.amazonaws.com
-          username: ubuntu
-          key: ${{ env.KEY }}
+          host: ${{ secrets.HOST_PROD }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ env.KEY_PROD }}
+          port: ${{ secrets.PORT }}
           script: |
             cd vintage
             git pull
