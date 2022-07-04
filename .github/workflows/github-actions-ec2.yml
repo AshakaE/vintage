@@ -10,9 +10,10 @@ on:
 jobs:
 
   deploy-to-modern:
-    if: ${{ github.ref == 'refs/heads/main' }}
     name: deploy to modern
     runs-on: ubuntu-latest
+    needs: [deploy]
+    if: always() && (needs.deploy.result == 'failure'
     steps:
       - run: echo "$GITHUB_REF"
       - name: Deploy to Server 2
