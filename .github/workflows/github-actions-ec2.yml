@@ -26,11 +26,12 @@ on:
 jobs:
 
   deploy-to-modern:
+    name: deploy to modern
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Server 2
         uses: appleboy/ssh-action@master
-      - with: |
+        with: 
           host: ${{ env.HOST }}
           username: ${{ env.USERNAME }}
           key: ${{ env.KEY }}
