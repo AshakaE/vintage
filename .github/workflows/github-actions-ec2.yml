@@ -35,7 +35,6 @@ jobs:
           host: ec2-3-89-232-35.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ env.KEY }}
-          port: 22
           script: |
             cd vintage
             git pull
